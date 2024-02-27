@@ -1,0 +1,60 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+<main>
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-3">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="h1 fw-bold">Welcome to our <strong>Pet Care Store</strong>!</h1>
+        <p class="lead text-muted">Join us on an endless journey of pets. 
+          Whether you're looking to adopt an adorable puppy, a playful kitten, or a charming little bird, we can fulfill your needs.</p>
+        <p>
+          <a href="#" class="btn btn-primary my-2">Click Here!!</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="pb-3 h5">Most Popular Items</div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+
+        {% for product in products %}
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}">
+            <div class="card-body">
+              <p class="card-text h5">
+                <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+              </p>
+              <div class="stars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+              <span class="h4 fw-bold">HK${{ product.price }}</span>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+
+
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+{% endblock %}
