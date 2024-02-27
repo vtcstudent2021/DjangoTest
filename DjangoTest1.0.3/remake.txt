@@ -19,4 +19,6 @@ from django.contrib.sessions.models import Session
 s = Session.objects.get(pk='8r46oyuhxgxi4skhd3cg1u3hw8z50ily')
 s.get_decoded()
 
-
+python3 -m venv .venv
+source .venv/bin/activate
+deactivate

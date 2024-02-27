@@ -1,0 +1,52 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+<main>
+
+  <section class="py-5 text-center container">
+    <img src="{% static 'image/banner.jpg' %}" class="img-fluid" alt="...">
+    </div>
+  </section>
+
+
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="pb-3 h5">Most Popular Items</div>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+
+        {% for product in products %}
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class="img-fluid" alt="Responsive image" src="{{ product.image.url }}">
+            <div class="card-body">
+              <p class="card-text h5">
+                <a class="text-dark text-decoration-none" href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+              </p>
+              <!-- <div class="stars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div> -->
+              <span class="h4 fw-bold">HK${{ product.price }}</span>
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
+</main>
+
+{% endblock %}
