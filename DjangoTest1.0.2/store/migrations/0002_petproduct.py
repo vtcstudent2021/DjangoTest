@@ -8,31 +8,53 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('store', '0001_initial'),
+        ("store", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='petProduct',
+            name="petProduct",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=255)),
-                ('author', models.CharField(default='admin', max_length=255)),
-                ('description', models.TextField(blank=True)),
-                ('image', models.ImageField(upload_to='images/')),
-                ('slug', models.SlugField(max_length=255)),
-                ('price', models.DecimalField(decimal_places=2, max_digits=4)),
-                ('in_stock', models.BooleanField(default=True)),
-                ('is_active', models.BooleanField(default=True)),
-                ('created', models.DateTimeField(auto_now_add=True)),
-                ('updated', models.DateTimeField(auto_now=True)),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='petProduct', to='store.category')),
-                ('created_by', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='petProduct_creator', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=255)),
+                ("author", models.CharField(default="admin", max_length=255)),
+                ("description", models.TextField(blank=True)),
+                ("image", models.ImageField(upload_to="images/")),
+                ("slug", models.SlugField(max_length=255)),
+                ("price", models.DecimalField(decimal_places=2, max_digits=4)),
+                ("in_stock", models.BooleanField(default=True)),
+                ("is_active", models.BooleanField(default=True)),
+                ("created", models.DateTimeField(auto_now_add=True)),
+                ("updated", models.DateTimeField(auto_now=True)),
+                (
+                    "category",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="petProduct",
+                        to="store.category",
+                    ),
+                ),
+                (
+                    "created_by",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="petProduct_creator",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'petProducts',
-                'ordering': ('-created',),
+                "verbose_name_plural": "petProducts",
+                "ordering": ("-created",),
             },
         ),
     ]
