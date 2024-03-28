@@ -1,0 +1,32 @@
+{% extends 'bbs/base.html' %}
+
+{% block content %}
+    <div class="card p-5">
+        <div class="card-body">
+            <h3 class="mb-3">{{ post.title }}</h3>
+            <hr/>
+            <div>
+                {# <img style="width: 30px" src="http://sns-webpic-qc.xhscdn.com/202311221434/42c63047e5073a78269ec35d5b579081/01026o01knn806ip62r010ip0qidtazpe1!nd_whgt34_webp_wm_1"> #}
+                <p>1 #  {{ post.user }} # [<span class="fw-lighter">{{ post.create_at }}</span>]</p>
+                <p>{{ post.content|safe }}</p>
+            </div>
+
+            {% for item in post.comment_set.all %}
+                <hr/>
+                <div class="comments">
+                {# <img style="width: 30px" src="http://sns-webpic-qc.xhscdn.com/202311221433/ea95d958b5549900dbe717c91553e1f5/01028u016bj38l3k2uf01199pbp7apqy4d!nd_whgt34_webp_wm_1"> #}
+                    <p>{{ forloop.counter|add:1 }} # {{ item.user }} # [<span class="fw-lighter">{{ item.create_at }}</span>]</p>
+                    <p> {{ item.content }}</p>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="card-footer" style="border: none">
+            {% load django_bootstrap5 %}
+            <form method="post" class="form" action="{% url 'post_comment' post.id %}">
+                {% csrf_token %}
+                {% bootstrap_form comment_form %}
+                {% bootstrap_button button_type="submit" content="Post" %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

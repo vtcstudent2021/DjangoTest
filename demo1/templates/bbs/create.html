@@ -1,0 +1,22 @@
+{% extends 'bbs/base.html' %}
+
+{% block css %}
+<link href="/static/ckeditor/ckeditor.css" media="all" rel="stylesheet">
+<script src="/static/ckeditor/ckeditor-init.js" data-ckeditor-basepath="/static/ckeditor/ckeditor/" id="ckeditor-init-script"></script>
+<script src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+{% endblock %}
+
+{% block content %}
+    {% load django_bootstrap5 %}
+
+    <div class="card mt-5">
+        <div class="card-body">
+            <form method="post" class="form" style="width: 760px; margin: 0 auto">
+                {% csrf_token %}
+                {% bootstrap_field form.title %}
+                {% bootstrap_field form.content show_label=False %}
+                {% bootstrap_button button_type="submit" content="Send" %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

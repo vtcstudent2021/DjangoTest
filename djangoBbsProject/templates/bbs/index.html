@@ -1,0 +1,45 @@
+{% extends 'bbs/base.html' %}
+
+
+{% block content %}
+    <div class="row justify-content-md-center">
+        <div class="col-12 col-md-7">
+            {% for item in page %}
+                <div class="card border-0 mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.title }}</h5>
+                        <h6 class="card-subtitle mt-2 mb-2 text-body-secondary">
+                            {{ item.create_at }}
+                        </h6>
+                        <div class="card-text">
+                            {{ item.content|safe|striptags|slice:":50" }}
+                        </div>
+                        <div class="card-action float-end">
+                            {% if current_user.is_authenticated %}
+                                <a href="" class="btn btn-warning">Delete</a>
+                                <a href=""
+                                   class="btn btn-secondary">Revise</a>
+                            {% endif %}
+                            <a href="{% url 'post_show' item.id %}" class="btn btn-success">Check</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            {% load django_bootstrap5 %}
+            {% bootstrap_pagination page %}
+        </div>
+        <div class="col-12 col-md-3">
+            <div class="card border-0">
+                <div class="card-header">
+                    Popular posts
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">AWS</li>
+                    <li class="list-group-item">Azure</li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
